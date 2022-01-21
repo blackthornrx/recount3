@@ -18,7 +18,8 @@
 #' annotation_ext("human", "fantom6_cat")
 #' annotation_ext("human", "refseq")
 #' annotation_ext("mouse")
-annotation_ext <- function(organism = c("human", "mouse"),
+#' annotation_ext("rat")
+annotation_ext <- function(organism = c("human", "mouse", "rat"),
     annotation = annotation_options(organism)) {
     organism <- match.arg(organism)
     annotation <- match.arg(annotation)
@@ -35,7 +36,15 @@ annotation_ext <- function(organism = c("human", "mouse"),
         )
     } else if (organism == "mouse") {
         ann_ext <- switch(annotation,
-            gencode_v23 = "M023"
+            gencode_v23 = "M023",
+            ercc = "ERCC",
+            sirv = "SIRV"
+        )
+    } else if (organism == "rat") {
+        ann_ext <- switch(annotation,
+            "rbn72" = "M105",
+            ercc = "ERCC",
+            sirv = "SIRV"
         )
     }
 

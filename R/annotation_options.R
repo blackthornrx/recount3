@@ -13,7 +13,8 @@
 #'
 #' annotation_options("human")
 #' annotation_options("mouse")
-annotation_options <- function(organism = c("human", "mouse")) {
+#' annotation_options("rat")
+annotation_options <- function(organism = c("human", "mouse", "rat")) {
     organism <- match.arg(organism)
     if (organism == "human") {
         options <- c(
@@ -26,7 +27,15 @@ annotation_options <- function(organism = c("human", "mouse")) {
         )
     } else if (organism == "mouse") {
         options <- c(
-            "gencode_v23"
+            "gencode_v23",
+            "ercc",
+            "sirv"
+        )
+    } else if (organism == "rat") {
+        options <- c(
+            "rbn72",
+            "ercc",
+            "sirv"
         )
     }
     return(options)

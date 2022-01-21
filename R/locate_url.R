@@ -11,7 +11,7 @@
 #' counts, exon counts, exon-exon junctions or base-pair BigWig coverage files
 #' (one per `sample`).
 #' @param organism A `character(1)` specifying which organism you want to
-#' download data from. Supported options are `"human"` or `"mouse"`.
+#' download data from. Supported options are `"human"` or `"mouse"` or `"rat"`.
 #' @param sample A `character()` vector with the sample ID(s) you want to
 #' download.
 #' @param annotation A `character(1)` specifying which annotation you want to
@@ -91,7 +91,7 @@ locate_url <-
         recount3_url = recount3_url
     ),
     type = c("metadata", "gene", "exon", "jxn", "bw"),
-    organism = c("human", "mouse"),
+    organism = c("human", "mouse", "rat"),
     sample = NULL,
     annotation = annotation_options(organism),
     jxn_format = c("ALL", "UNIQUE"),

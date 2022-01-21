@@ -116,7 +116,7 @@ create_rse_manual <- function(project,
         recount3_url = recount3_url
     ),
     type = c("gene", "exon", "jxn"),
-    organism = c("human", "mouse"),
+    organism = c("human", "mouse", "rat"),
     annotation = annotation_options(organism),
     bfc = recount3_cache(),
     jxn_format = c("ALL", "UNIQUE"),
