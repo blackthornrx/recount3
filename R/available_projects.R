@@ -42,7 +42,7 @@
 #'
 #' ## How many are from a data source vs a compilation?
 #' table(mouse_samples$project_type, useNA = "ifany")
-available_samples <- function(organism = c("human", "mouse"),
+available_samples <- function(organism = c("human", "mouse", "rat"),
     recount3_url = getOption("recount3_url", "http://duffel.rail.bio/recount3"),
     bfc = recount3_cache(),
     verbose = getOption("recount3_verbose", TRUE),
@@ -78,6 +78,7 @@ available_samples <- function(organism = c("human", "mouse"),
     ## Make organism names consistent with the R package
     samples$organism[samples$organism == "Homo sapiens"] <- "human"
     samples$organism[samples$organism == "Mus musculus"] <- "mouse"
+    samples$organism[samples$organism == "Rattus norvegicus"] <- "rat"
 
     ## Remove study since it's duplicated with project
     stopifnot(identical(samples$project, samples$study))
@@ -158,7 +159,7 @@ available_samples <- function(organism = c("human", "mouse"),
 #' available_projects(
 #'     recount3_url = "http://snaptron.cs.jhu.edu/data/temp/recount3test"
 #' )
-available_projects <- function(organism = c("human", "mouse"),
+available_projects <- function(organism = c("human", "mouse", "rat"),
     recount3_url = getOption("recount3_url", "http://duffel.rail.bio/recount3"),
     bfc = recount3_cache(),
     available_homes = project_homes(
