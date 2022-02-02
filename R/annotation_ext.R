@@ -32,7 +32,8 @@ annotation_ext <- function(organism = c("human", "mouse", "rat"),
             ercc = "ERCC",
             fantom6_cat = "F006",
             refseq = "R109",
-            sirv = "SIRV"
+            sirv = "SIRV",
+            sirv = "L1000"
         )
     } else if (organism == "mouse") {
         ann_ext <- switch(annotation,

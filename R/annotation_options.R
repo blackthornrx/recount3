@@ -23,7 +23,8 @@ annotation_options <- function(organism = c("human", "mouse", "rat")) {
             "fantom6_cat",
             "refseq",
             "ercc",
-            "sirv"
+            "sirv",
+            "l1000"
         )
     } else if (organism == "mouse") {
         options <- c(
