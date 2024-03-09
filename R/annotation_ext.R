@@ -19,7 +19,7 @@
 #' annotation_ext("human", "refseq")
 #' annotation_ext("mouse")
 #' annotation_ext("rat")
-annotation_ext <- function(organism = c("human", "mouse", "rat"),
+annotation_ext <- function(organism = c("human", "mouse", "rat", "pig", "rabbit"),
     annotation = annotation_options(organism)) {
     organism <- match.arg(organism)
     annotation <- match.arg(annotation)
@@ -44,6 +44,18 @@ annotation_ext <- function(organism = c("human", "mouse", "rat"),
     } else if (organism == "rat") {
         ann_ext <- switch(annotation,
             "rbn72" = "M105",
+            ercc = "ERCC",
+            sirv = "SIRV"
+        )
+    } else if (organism == "pig") {
+        ann_ext <- switch(annotation,
+            "p111" = "MP11",
+            ercc = "ERCC",
+            sirv = "SIRV"
+        )
+    } else if (organism == "rabbit") {
+        ann_ext <- switch(annotation,
+            "mr20" = "MR20",
             ercc = "ERCC",
             sirv = "SIRV"
         )

@@ -24,13 +24,15 @@
 #' project_homes("human")
 #' project_homes("mouse")
 #' project_homes("rat")
+#' project_homes("pig")
+#' project_homes("rabbit")
 #'
 #' ## Test files
 #' project_homes("human",
 #'     recount3_url = "http://snaptron.cs.jhu.edu/data/temp/recount3"
 #' )
 project_homes <-
-    function(organism = c("human", "mouse", "rat"),
+    function(organism = c("human", "mouse", "rat", "pig", "rabbit"),
         recount3_url = getOption("recount3_url", "http://duffel.rail.bio/recount3")) {
         organism <- match.arg(organism)
 

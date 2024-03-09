@@ -19,8 +19,10 @@
 #' locate_url_ann()
 #' locate_url_ann(organism = "mouse")
 #' locate_url_ann(organism = "rat")
+#' locate_url_ann(organism = "pig")
+#' locate_url_ann(organism = "rabbit")
 locate_url_ann <- function(type = c("gene", "exon"),
-    organism = c("human", "mouse", "rat"),
+    organism = c("human", "mouse", "rat", "pig", "rabbit"),
     annotation = annotation_options(organism),
     recount3_url = getOption("recount3_url", "http://duffel.rail.bio/recount3")) {
     type <- match.arg(type)
