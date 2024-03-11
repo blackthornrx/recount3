@@ -162,12 +162,7 @@ available_samples <- function(organism = c("human", "mouse", "rat", "pig", "rabb
 #' available_projects(
 #'     recount3_url = "http://snaptron.cs.jhu.edu/data/temp/recount3test"
 #' )
-<<<<<<< HEAD
 available_projects <- function(organism = c("human", "mouse", "rat", "pig", "rabbit"),
-=======
-#' }
-available_projects <- function(organism = c("human", "mouse"),
->>>>>>> da20bd4367b91f4196d716d81fa3700c59f95121
     recount3_url = getOption("recount3_url", "http://duffel.rail.bio/recount3"),
     bfc = recount3_cache(),
     available_homes = project_homes(
