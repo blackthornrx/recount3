@@ -13,7 +13,7 @@
 #'
 #' @return A `character()` vector with the available `project_home` options.
 #'
-#' @importFrom RCurl url.exists
+#' @importFrom httr http_error
 #' @family internal functions for accessing the recount3 data
 #' @export
 #'
@@ -33,30 +33,18 @@
 #' )
 project_homes <-
     function(organism = c("human", "mouse", "rat", "pig", "rabbit"),
-        recount3_url = getOption("recount3_url", "http://duffel.rail.bio/recount3")) {
+    recount3_url = getOption("recount3_url", "http://duffel.rail.bio/recount3")) {
         organism <- match.arg(organism)
 
         ## Choose cached values if they exist
         option_name <- paste0("recount3_organism_", organism, "_project_homes_URL_", recount3_url)
         homes <- getOption(option_name)
-        if (!is.null(homes))
-            return(homes)
+        if (!is.null(homes)) {
+              return(homes)
+        }
 
-        ## Construct the URL for the homes_index file
-        homes_url <-
-            paste(recount3_url, organism, "homes_index", sep = "/")
-        if (url.exists(homes_url)) {
-            homes_from_url <- readLines(homes_url)
-
-            ## Cache the result for the resulting organism so we don't need
-            ## to check this again in this R session
-            options_list <- list(homes_from_url)
-            names(options_list) <- option_name
-            options(options_list)
-
-            ## Return result found
-            return(homes_from_url)
-        } else if (recount3_url == "http://snaptron.cs.jhu.edu/data/temp/recount3") {
+        ## For the recount3 test case
+        if (recount3_url == "http://snaptron.cs.jhu.edu/data/temp/recount3") {
             if (organism == "mouse") {
                 return("data_sources/sra")
             } else if (organism == "human") {
@@ -70,6 +58,28 @@ project_homes <-
                     )
                 )
             }
+        }
+
+        ## Construct the URL for the homes_index file
+        homes_url <-
+            paste(recount3_url, organism, "homes_index", sep = "/")
+
+        url_failed <- tryCatch(
+            http_error(homes_url),
+            error = function(e) { return (TRUE)}
+        )
+
+        if (!url_failed) {
+            homes_from_url <- readLines(homes_url)
+
+            ## Cache the result for the resulting organism so we don't need
+            ## to check this again in this R session
+            options_list <- list(homes_from_url)
+            names(options_list) <- option_name
+            options(options_list)
+
+            ## Return result found
+            return(homes_from_url)
         } else if (!file.exists(recount3_url)) {
             stop(
                 "'recount3_url' is not a valid supported URL since it's missing the URL/<organism>/homes_index text file or 'recount3_url' is not an existing directory in your file system.",
@@ -78,8 +88,10 @@ project_homes <-
         }
 
         ## Define the base directories
-        base_dirs <- c("data_sources",
-            "collections")
+        base_dirs <- c(
+            "data_sources",
+            "collections"
+        )
 
         homes <- lapply(base_dirs, function(base_dir) {
             ## Build the query URL

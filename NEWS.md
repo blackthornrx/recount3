@@ -1,3 +1,16 @@
+# recount3 1.11.2
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Windows users can now use <http://duffel.rail.bio/recount3> again! The switch
+to `httr::http_error()` resolved the duffel access problem for Windows users.
+
+# recount3 1.11.1
+
+SIGNIFICANT USER-VISIBLE CHANGES
+
+* Switched from using `RCurl::url.exists()` to `!httr::http_error()`.
+
 # recount3 1.3.9
 
 BUG FIXES

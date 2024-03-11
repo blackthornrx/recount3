@@ -66,7 +66,7 @@ bib <- c(
     interactiveDisplayBase = citation("interactiveDisplayBase")[1],
     rtracklayer = citation("rtracklayer")[1],
     S4Vectors = citation("S4Vectors")[1],
-    RCurl = citation("RCurl")[1],
+    httr = citation("httr")[1],
     data.table = citation("data.table")[1],
     R.utils = citation("R.utils")[1],
     Matrix = citation("Matrix")[1],
@@ -134,7 +134,7 @@ If you are asking yourself the question "Where do I start using Bioconductor?" y
 
 ## Asking for help
 
-As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But `R` and `Bioconductor` have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help: remember to use the `recount3` tag and check [the older posts](https://support.bioconductor.org/t/recount3/). Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
+As package developers, we try to explain clearly how to use our packages and in which order to use the functions. But `R` and `Bioconductor` have a steep learning curve so it is critical to learn where to ask for help. The blog post quoted above mentions some but we would like to highlight the [Bioconductor support site](https://support.bioconductor.org/) as the main resource for getting help: remember to use the `recount3` tag and check [the older posts](https://support.bioconductor.org/tag/recount3/). Other alternatives are available such as creating GitHub issues and tweeting. However, please note that if you want to receive help you should adhere to the [posting guidelines](http://www.bioconductor.org/help/support/posting-guide/). It is particularly critical that you provide a small reproducible example and your session information so package developers can track down the source of the error.
 
 ## Citing `r Biocpkg('recount3')`
 
@@ -509,7 +509,9 @@ recount3_cache_files()
 
 The main documentation website documents how the raw files should be organized in your mirror or for your own data. You can inspect the structure of the data by checking the internals of `locate_url()` and `locate_url_ann()`. Both functions can be used to get the full list of URLs. In addition, for a given mirror, `available_projects()` will show the local data sources and collections. Finally, `file_retrieve()` won't cache the data if it detects that the data already exists in the local disk.
 
-In particular, this functionality can be useful if you want to access the data at [IDIES](https://idies.jhu.edu/) using [SciServer Compute](https://apps.sciserver.org/compute/).
+In particular, this functionality can be useful if you want to access the data through [Registry of Open Data on AWS](https://registry.opendata.aws/recount/) or at [IDIES](https://idies.jhu.edu/) using [SciServer Compute](https://apps.sciserver.org/compute/), which are the two official mirrors for `recount3` data.
+
+<a href="https://registry.opendata.aws/recount/"><img src="https://assets.opendata.aws/img/AWS-Logo_White-Color_300x180.png" width="250px"></a>
 
 <a href="https://apps.sciserver.org/compute/"><img src="https://skyserver.sdss.org/dr14/en/images/sciserver_logo_inverted_vertical.png" width="400px"></a>
 
@@ -523,7 +525,7 @@ The `ReCount` family involves the following teams:
 * [Leonardo Collado-Torres](http://lcolladotor.github.io/) and [Andrew E. Jaffe](http://aejaffe.com/) from [LIBD](https://www.libd.org/)
 * [Abhinav Nellore's lab](http://nellore.bio/)  at OHSU
 * [Jeff Leek's lab](http://jtleek.com/) at JHBSPH Biostatistics Deparment
-* Data hosted by [SciServer from IDIES at JHU](https://www.sciserver.org/)
+* Data hosted by the [Registry of Open Data on AWS](https://registry.opendata.aws/recount/) and [SciServer from IDIES at JHU](https://www.sciserver.org/) through a load balancer called [duffel](https://github.com/nellore/digitalocean-duffel).
 
 
 ## Project history
@@ -534,7 +536,7 @@ To clarify the relationship between the R/Bioconductor packages and the phases o
 | --- | --- | --- | --- |
 | 2011 | [`ReCount`](http://bowtie-bio.sourceforge.net/recount/) | DOI: [10.1186/1471-2105-12-449](https://doi.org/10.1186/1471-2105-12-449) | none |
 | 2017 | [`recount2`](https://jhubiostatistics.shinyapps.io/recount/) | DOI: [10.1038/nbt.3838](https://doi.org/10.1038/nbt.3838) [10.12688/f1000research.12223.1](https://doi.org/10.12688/f1000research.12223.1) | `r Biocpkg('recount')` |
-| 2021 | [`recount3`](https://LieberInstitute.github.io/recount3-docs) | DOI: [10.1101/2021.05.21.445138](https://doi.org/10.1101/2021.05.21.445138) | `r Biocpkg('recount3')` |
+| 2021 | [`recount3`](https://LieberInstitute.github.io/recount3-docs) | DOI: [10.1186/s13059-021-02533-6](https://doi.org/10.1186/s13059-021-02533-6) | `r Biocpkg('recount3')` |
 
 ## Other related tools
 
@@ -562,13 +564,13 @@ The `r Biocpkg('recount3')` package `r citep(bib[['recount3']])` was made possib
 * `r CRANpkg('covr')` `r citep(bib[['covr']])`
 * `r CRANpkg('data.table')` `r citep(bib[['data.table']])`
 * `r Biocpkg('GenomicRanges')` `r citep(bib[['GenomicRanges']])`
+* `r CRANpkg('httr')` `r citep(bib[['httr']])`
 * `r Biocpkg('interactiveDisplayBase')` `r citep(bib[['interactiveDisplayBase']])`
 * `r CRANpkg('knitcitations')` `r citep(bib[['knitcitations']])`
 * `r CRANpkg('knitr')` `r citep(bib[['knitr']])`
 * `r CRANpkg('Matrix')` `r citep(bib[['Matrix']])`
 * `r CRANpkg('pryr')` `r citep(bib[['pryr']])`
 * `r CRANpkg('RefManageR')` `r citep(bib[['RefManageR']])`
-* `r CRANpkg('RCurl')` `r citep(bib[['RCurl']])`
 * `r CRANpkg('rmarkdown')` `r citep(bib[['rmarkdown']])`
 * `r Biocpkg('rtracklayer')` `r citep(bib[['rtracklayer']])`
 * `r CRANpkg('R.utils')` `r citep(bib[['R.utils']])`
